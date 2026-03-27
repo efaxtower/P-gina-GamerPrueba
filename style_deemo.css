@@ -1,0 +1,362 @@
+/* --- BASE & VARIABLES (Combinación de ambos estilos) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif; /* DeepSeek */
+    color: #e6e6e6;
+    line-height: 1.6;
+    overflow-x: hidden;
+    
+    /* --- CAMBIO DE FONDO GLOBAL --- */
+    background-color: #0a0a0a;
+    /* Imagen oficial de Deemo oscurecida y fixed */
+    background-image: 
+        linear-gradient(to bottom, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.7) 50%, rgba(10, 10, 10, 0.9) 100%),
+        url('https://images.rayark.com/deemo/v2/web/assets/images/about/img_about_deemo_01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Mantiene el fondo quieto al hacer scroll */
+}
+
+/* --- NAVBAR (Manteniendo la estética cyber-cristal) --- */
+.navbar {
+    background: rgba(8, 8, 12, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.5);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 800;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #00ffaa, #00ccff, #aa88ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: 0.25s;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: #00ffaa;
+    text-shadow: 0 0 6px #00ffaa;
+}
+
+.auth-buttons span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    background: rgba(0, 255, 136, 0.12);
+    padding: 6px 12px;
+    border-radius: 40px;
+    border: 1px solid rgba(0, 255, 136, 0.4);
+    color: #aaffdd;
+}
+
+/* --- MAIN CONTENT --- */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+}
+
+/* --- HERO SECTION (Estilo DeepSeek con tu color) --- */
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ffcc, #44aaff, #ff66cc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px rgba(0,255,200,0.2);
+    letter-spacing: -0.5px;
+}
+
+.hero p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    color: #88ffdd;
+    border-right: 2px solid #00ffaa;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 3s steps(38, end), blink 0.75s step-end infinite;
+    margin-top: 0.5rem;
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent } }
+
+.glitch-line {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff88, #00ccff, transparent);
+    margin: 20px auto 0;
+}
+
+/* --- TARJETAS (CARDS) MEJORADAS --- */
+.card {
+    background: rgba(18, 18, 26, 0.7); /* Ligeramente más transparente */
+    backdrop-filter: blur(4px); /* Cristal para ver el fondo global */
+    border: 1px solid #2a2a3a;
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.25s ease;
+    margin-bottom: 2rem;
+    overflow: hidden; /* Importante para las imágenes internas */
+}
+
+.card:hover {
+    border-color: #00ffaa;
+    box-shadow: 0 8px 28px rgba(0, 255, 136, 0.15);
+    transform: translateY(-3px);
+}
+
+/* --- NUEVAS CLASES PARA PANELES MIXTOS --- */
+.mixed-card {
+    display: flex;
+    padding: 0; /* Imagen ocupará todo el borde */
+    min-height: 400px;
+}
+
+.card-content {
+    flex: 1; /* Texto ocupa la mitad */
+    padding: 2rem;
+    background: rgba(18, 18, 26, 0.85); /* Fondo extra para legibilidad */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-image {
+    flex: 1; /* Imagen ocupa la otra mitad */
+    background-size: cover;
+    background-position: center;
+    border-left: 1px solid #2a2a3a;
+    transition: transform 0.6s ease;
+}
+
+/* Alternar orden de imagen (izquierda) */
+.mixed-card.image-left {
+    flex-direction: row-reverse;
+}
+
+.mixed-card.image-left .card-image {
+    border-left: none;
+    border-right: 1px solid #2a2a3a;
+}
+
+/* Efecto hover en la imagen */
+.mixed-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* --- DETALLES DE TEXTO (DeepSeek) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin: 1rem 0 2rem;
+}
+
+.stat-number {
+    font-family: 'Orbitron', monospace;
+    color: #00ffcc;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid #00ffaa;
+    padding-left: 1rem;
+}
+
+.lore-text {
+    font-size: 1.02rem;
+    color: #dbdbdb;
+    line-height: 1.7;
+}
+
+.lore-highlight {
+    color: #aaffdd;
+    background: linear-gradient(120deg, rgba(0,255,170,0.1), rgba(0,200,255,0.05));
+    padding: 0 4px;
+    border-radius: 6px;
+}
+
+.quote {
+    font-style: italic;
+    font-family: 'Share Tech Mono', monospace;
+    color: #99ffdd;
+    margin: 1.2rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid #00ffaa;
+}
+
+.logs-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.log-entry h4 {
+    color:#00ffaa; 
+    margin-bottom: 6px;
+    font-family: 'Orbitron';
+    font-size: 0.9rem;
+}
+
+.log-entry p {
+    font-family: 'Share Tech Mono';
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+/* --- TABLA (DeepSeek mantenida) --- */
+.table-container {
+    overflow-x: auto; /* Scroll para móvil */
+    border-radius: 20px;
+    border: 1px solid #2a2a36;
+}
+
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111117;
+}
+
+.ranking-table th {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    background: #1e1e2a;
+    color: #ccffdd;
+    padding: 1rem;
+    text-align: left;
+}
+
+.ranking-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #2a2a36;
+    font-family: 'Inter', sans-serif; /* Texto normal */
+}
+
+.ranking-table tbody td:first-child {
+    font-family: 'Share Tech Mono', monospace; /* Solo posición en Mono */
+}
+
+.position-1 { color: #ffd966; font-weight: bold; }
+.position-2 { color: #c0c0c0; font-weight: bold; }
+.position-3 { color: #cd7f32; font-weight: bold; }
+.trend-up { color: #00ffaa; font-weight: bold; }
+.trend-down { color: #ff6670; }
+
+/* --- BOTÓN Y ESTADO --- */
+.btn-primary {
+    background: linear-gradient(95deg, #00cc88, #00aaff);
+    color: #0a0a0a;
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    padding: 1.2rem 2.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 60px;
+    letter-spacing: 1.5px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(95deg, #00ffaa, #22ccff);
+    box-shadow: 0 0 25px rgba(0, 255, 170, 0.6);
+    transform: scale(1.02) translateY(-2px);
+}
+
+.connection-status {
+    margin-top: 18px; 
+    font-family: 'Share Tech Mono'; 
+    color: #44ddff; 
+    font-size: 0.8rem; 
+    background: rgba(0,255,170,0.08); 
+    display: inline-block; 
+    padding: 6px 18px; 
+    border-radius: 30px;
+    border: 1px solid rgba(0,255,170,0.2);
+}
+
+/* --- FOOTER --- */
+.footer {
+    border-top: 1px solid rgba(0, 255, 170, 0.3);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: #aaa;
+    background: rgba(8, 8, 12, 0.9);
+}
+
+/* --- RESPONSIVE DESIGN (Crucial para imágenes) --- */
+@media (max-width: 900px) {
+    .mixed-card, .mixed-card.image-left {
+        flex-direction: column-reverse; /* Imagen arriba, texto abajo */
+    }
+    
+    .card-image {
+        min-height: 250px;
+        border: none !important;
+        border-bottom: 1px solid #2a2a3a !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero h1 { font-size: 2.2rem; }
+    
+    .hero p {
+        white-space: normal;
+        border-right: none;
+        animation: none;
+        display: block;
+    }
+    
+    .nav-container { flex-direction: column; gap: 0.8rem; }
+    .nav-links { gap: 1.2rem; flex-wrap: wrap; justify-content: center;}
+    .nav-links a { font-size: 0.7rem; }
+    
+    .container { padding: 1rem; }
+    .card { padding: 1rem; }
+    .card-content { padding: 1.5rem 1rem; }
+}

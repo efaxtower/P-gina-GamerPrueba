@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX LEGENDS | Apex Hub - La Leyenda Continúa</title>
+    <style>
+        /* ===== ESTILOS NEÓN APEX ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(255, 70, 85, 0.8);
+            box-shadow: 0 4px 15px rgba(255, 70, 85, 0.2);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 2px solid #ff4655;
+            box-shadow: 0 4px 25px rgba(255, 70, 85, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ff4655, #ff6b7c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 70, 85, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ff4655;
+            text-shadow: 0 0 8px rgba(255, 70, 85, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff4655;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #ff4655;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff5f6d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 70, 85, 0.4);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            color: white;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://wallpapercave.com/wp/wp7969775.jpg') center/cover no-repeat;
+            opacity: 0.5;
+            z-index: -2;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(255,70,85,0.2));
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #ff4655, #ff8c00, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 70, 85, 0.5);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 70, 85, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 70, 85, 0.8), 0 0 10px rgba(255, 140, 0, 0.5); }
+        }
+
+        .hero p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #ff8c00;
+            text-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+            margin-bottom: 2rem;
+            border-right: 2px solid #ff4655;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff4655; }
+        }
+
+        /* Secciones */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #ff4655);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Grids */
+        .grid-3, .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: #ff4655;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(255, 70, 85, 0.2);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #333;
+        }
+
+        /* Introducción con dos columnas */
+        .intro-container {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .intro-container:hover {
+            border-color: #ff4655;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(255, 70, 85, 0.2);
+        }
+        .intro-text {
+            flex: 1;
+        }
+        .intro-image {
+            flex: 0.8;
+            text-align: center;
+        }
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #ff4655;
+        }
+        @media (max-width: 768px) {
+            .intro-container {
+                flex-direction: column;
+            }
+            .intro-image {
+                margin-top: 1rem;
+            }
+        }
+
+        /* Tabla */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .specs-table th, .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        .specs-table th {
+            color: #ff4655;
+            background: #0a0a0a;
+        }
+        .specs-table tr:hover {
+            background: #252525;
+        }
+
+        /* Foro */
+        .forum-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .category-card {
+            background: #1a1a1a;
+            border-left: 3px solid #ff4655;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+        .category-card:hover {
+            background: #252525;
+            transform: translateX(5px);
+        }
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: #ff4655;
+        }
+        .thread-list {
+            margin-top: 1rem;
+        }
+        .thread-item {
+            background: #1a1a1a;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        .thread-item:hover {
+            background: #252525;
+            border-left: 3px solid #ff4655;
+        }
+
+        /* Encuesta */
+        .survey-section {
+            background: #1a1a1a;
+            border: 1px solid #ff4655;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .survey-question {
+            margin-bottom: 1.5rem;
+        }
+        .survey-question label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #ff4655;
+        }
+        .survey-question input, .survey-question select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+        }
+
+        /* Enlaces iluminados */
+        .link-card {
+            background: #1a1a1a;
+            border: 1px solid #ff4655;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 70, 85, 0.3);
+            transition: all 0.3s;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 70, 85, 0.6);
+        }
+        .link-card a {
+            color: #ff4655;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        .link-card a:hover {
+            text-shadow: 0 0 8px rgba(255, 70, 85, 0.8);
+        }
+        .link-card h3 {
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            border-top: 1px solid #ff4655;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .grid-3, .links-grid {
+                grid-template-columns: 1fr;
+            }
+            .forum-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">APEX<span> HUB</span></div>
+            <ul class="nav-links">
+                <li><a onclick="location.href='index.html'">PAGINA ANTERIOR</a></li>
+                <li><a href="#intro">Historia</a></li>
+                <li><a href="#leyendas">Leyendas</a></li>
+                <li><a href="#modos">Modos</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#esports">Esports</a></li>
+                <li><a href="#foro">Foro</a></li>
+                <li><a href="#encuesta">Encuesta</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>APEX LEGENDS</h1>
+            <p>Domina el Ring, conviértete en una leyenda. El battle royale gratuito más dinámico.</p>
+            <div id="player-count" style="font-family: 'Share Tech Mono'; font-size: 1.2rem; color: #ff8c00; margin-top: 1rem;">Cargando leyendas en línea...</div>
+        </div>
+    </header>
+
+    <!-- Historia / Introducción -->
+    <section id="intro" class="section">
+        <h2>📖 La Historia de Apex Legends</h2>
+        <div class="intro-container">
+            <div class="intro-text">
+                <p><strong>Apex Legends</strong> es un <strong>battle royale gratuito</strong> ambientado en el universo de <em>Titanfall</em>. La historia se desarrolla en <strong>Los Outlands</strong>, una región fronteriza del espacio donde los mercenarios más letales compiten en los <strong>Juegos Apex</strong>, un torneo sangriento organizado por la misteriosa corporación <strong>Syndicate</strong>.</p>
+                <br>
+                <p>Los juegos comenzaron como una forma de mantener el control en los territorios salvajes, pero pronto se convirtieron en un fenómeno global. Cada leyenda tiene su propia historia: desde la ex científica asesina <strong>Horizon</strong> hasta el experimento militar fallido que creó a <strong>Revenant</strong>. La temporada actual (2026) ha revelado nuevos secretos sobre la verdadera naturaleza del Syndicate y el origen de las leyendas.</p>
+                <br>
+                <p>El lema del torneo es claro: <strong>"Una leyenda nunca muere"</strong>. Pero en los Outlands, solo uno puede sobrevivir en el Ring.</p>
+            </div>
+            <div class="intro-image">
+                <img src="r1.png" alt="Apex Legends Artwork">
+            </div>
+        </div>
+    </section>
+
+    <!-- Leyendas Destacadas -->
+    <section id="leyendas" class="section">
+        <h2>🏆 Leyendas Más Populares (2026)</h2>
+        <div class="grid-3">
+            <div class="card">
+                <img class="game-img" src="https://cdn2.unrealengine.com/apex-legends/apex-legends-wraith-key-art-3840x2160-3840x2160-1147146872.jpg" alt="Wraith">
+                <h3>🔴 Wraith</h3>
+                <p><strong>Asesina interdimensional</strong> con habilidades para esquivar y teletransportarse. Perfecta para jugadores agresivos que necesitan escapes rápidos.</p>
+                <p style="color: #ff8c00; margin-top: 0.5rem;">⚡ Habilidad: Dimensional Rift</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="https://www.dexerto.com/cdn-cgi/image/width=3840,quality=75,format=auto/https://editors.dexerto.com/wp-content/uploads/2023/02/14/apex-legends-octane.jpg" alt="Octane">
+                <h3>🟠 Octane</h3>
+                <p><strong>Adicto a la adrenalina</strong>, el más rápido del Ring. Su velocidad y regeneración de vida lo hacen ideal para flanqueos rápidos.</p>
+                <p style="color: #ff8c00; margin-top: 0.5rem;">⚡ Habilidad: Stim</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1f5bc3de-cf69-4bae-8d1c-07cb702b7e0f/dfbcobt-d0e3114b-59c2-43ab-9913-70ca7769fe3a.png/v1/fill/w_1280,h_720,q_80,strp/bloodhound__apex_legends__by_janemere_dfbcobt-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvMWY1YmMzZGUtY2Y2OS00YmFlLThkMWMtMDdjYjcwMmI3ZTBmXC9kZmJjb2J0LWQwZTMxMTRiLTU5YzItNDNhYi05OTEzLTcwY2E3NzY5ZmUzYS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.lj1Yndiqvhe0rqqJ4U62VYhIf5CcMPlIULtlRY95Lv4" alt="Bloodhound">
+                <h3>🟢 Bloodhound</h3>
+                <p><strong>Rastreador tecnológico</strong>, perfecto para cazar enemigos. Ideal para equipos que necesitan información táctica.</p>
+                <p style="color: #ff8c00; margin-top: 0.5rem;">⚡ Habilidad: Eye of the Allfather</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modos de juego -->
+    <section id="modos" class="section">
+        <h2>🕹️ Modos de Juego 2026</h2>
+        <div class="grid-3">
+            <div class="card">
+                <img class="game-img" src="https://www.dexerto.com/cdn-cgi/image/width=3840,quality=75,format=auto/https://editors.dexerto.com/wp-content/uploads/2023/08/14/apex-legends-battle-royale.jpg" alt="Battle Royale">
+                <h3>🏆 Battle Royale</h3>
+                <p>El modo clásico: <strong>20 escuadras de 3 jugadores</strong> compiten por ser el último equipo en pie. El Ring se cierra cada vez más mientras luchas por sobrevivir.</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/08/apex-legends-control.jpg" alt="Control">
+                <h3>🎯 Control</h3>
+                <p>Modo por equipos con <strong>reaparición infinita</strong>. Domina las zonas y acumula puntos. Perfecto para practicar combates sin presión.</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="https://www.ggrecon.com/media/ayngn0dv/apex-legends-gun-run.jpg" alt="Gun Run">
+                <h3>⚡ Gun Run</h3>
+                <p>Ronda de <strong>armas rotativas</strong>. Cada eliminación cambia tu arma. El último en pie o el primero en completar el arsenal gana.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requisitos técnicos -->
+    <section id="requisitos" class="section">
+        <h2>💻 Requisitos del Sistema (PC)</h2>
+        <table class="specs-table">
+            <thead>
+                <tr><th>Componente</th><th>Mínimo</th><th>Recomendado (Competitivo)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Procesador</td><td>Intel Core i3-6300 / AMD FX-4350</td><td>Intel i7-9700K / Ryzen 7 3700X</td></tr>
+                <tr><td>Memoria RAM</td><td>6 GB</td><td>16 GB</td></tr>
+                <tr><td>Tarjeta Gráfica</td><td>NVIDIA GeForce GT 640 / Radeon HD 7730</td><td>NVIDIA RTX 3060 / RX 6600 XT</td></tr>
+                <tr><td>Almacenamiento</td><td>75 GB SSD</td><td>75 GB NVMe SSD</td></tr>
+                <tr><td>Sistema Operativo</td><td>Windows 10 (64-bit)</td><td>Windows 10/11 (64-bit)</td></tr>
+                <tr><td>DirectX</td><td>DirectX 12</td><td>DirectX 12</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Escena competitiva -->
+    <section id="esports" class="section">
+        <h2>🏆 Escena Competitiva 2026 (ALGS)</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>🏅 ALGS Split 1 Playoffs</h3>
+                <p>Enero – Los mejores 40 equipos del mundo compiten por <strong>$1,000,000 USD</strong> en Tokio, Japón.</p>
+            </div>
+            <div class="card">
+                <h3>🌍 ALGS Championship 2026</h3>
+                <p>Septiembre – La final mundial con <strong>$2,500,000 USD</strong> en premios. Londres será la sede este año.</p>
+            </div>
+            <div class="card">
+                <h3>⚡ Last Chance Qualifier</h3>
+                <p>Agosto – La última oportunidad para clasificar al mundial. Equipos de todas las regiones se enfrentan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enlaces útiles -->
+    <section id="enlaces" class="section">
+        <h2>🔗 Enlaces Útiles</h2>
+        <div class="links-grid" style="display: flex; justify-content: center;">
+            <div class="link-card">
+                <h3>🎮 Descarga Gratuita</h3>
+                <p>Juega ahora en PC, PlayStation, Xbox o Switch</p>
+                <a href="https://www.ea.com/es-es/games/apex-legends" target="_blank">ea.com/apex-legends →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foro -->
+    <section id="foro" class="section">
+        <h2>💬 Foro de la Comunidad</h2>
+        <div class="forum-categories">
+            <div class="category-card" data-category="general">
+                <h3>💬 General</h3>
+                <p>Discusiones sobre el juego y meta</p>
+            </div>
+            <div class="category-card" data-category="legends">
+                <h3>🦸 Leyendas & Habilidades</h3>
+                <p>Combos y estrategias por personaje</p>
+            </div>
+            <div class="category-card" data-category="weapons">
+                <h3>🔫 Armas & Loadout</h3>
+                <p>Mejores combinaciones del meta</p>
+            </div>
+            <div class="category-card" data-category="competitive">
+                <h3>🏆 Competitivo & ALGS</h3>
+                <p>Tornejos, rangos y pro-players</p>
+            </div>
+        </div>
+        <div id="threadsContainer" class="thread-list">
+            <div class="thread-item">Selecciona una categoría para ver los temas</div>
+        </div>
+    </section>
+
+    <!-- Encuesta -->
+    <section id="encuesta" class="section">
+        <h2>📊 Opina sobre Apex Legends</h2>
+        <div class="survey-section">
+            <div class="survey-question">
+                <label>¿Cuál es tu leyenda favorita?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="favLegend" value="Wraith"> Wraith</label>
+                    <label><input type="radio" name="favLegend" value="Octane"> Octane</label>
+                    <label><input type="radio" name="favLegend" value="Bloodhound"> Bloodhound</label>
+                    <label><input type="radio" name="favLegend" value="Horizon"> Horizon</label>
+                    <label><input type="radio" name="favLegend" value="Valkyrie"> Valkyrie</label>
+                </div>
+            </div>
+            <div class="survey-question">
+                <label>Plataforma principal</label>
+                <select id="platform">
+                    <option>PC (Steam/EA App)</option>
+                    <option>PlayStation 5</option>
+                    <option>Xbox Series X|S</option>
+                    <option>Nintendo Switch</option>
+                </select>
+            </div>
+            <div class="survey-question">
+                <label>¿Qué mejorarías del juego?</label>
+                <input type="text" id="comment" placeholder="Escribe tu opinión...">
+            </div>
+            <button class="btn btn-primary" id="submitSurvey">Enviar respuesta</button>
+            <div id="surveyResult" style="margin-top: 1rem; color: #ff8c00;"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Apex Hub - Comunidad de Apex Legends. Apex Legends es propiedad de EA / Respawn Entertainment.</p>
+    </footer>
+
+    <script>
+        // Contador de jugadores (simulado)
+        function updatePlayers() {
+            const playerCountSpan = document.getElementById('player-count');
+            const randomPlayers = Math.floor(Math.random() * (800000 - 500000) + 500000);
+            playerCountSpan.innerHTML = `🎮 Leyendas en línea: ${randomPlayers.toLocaleString()}`;
+        }
+        setInterval(updatePlayers, 5000);
+        updatePlayers();
+
+        // Foro simulado de Apex Legends
+        const threadsData = {
+            general: [
+                "¿Qué opinas del nuevo mapa E-District?",
+                "La mejor temporada hasta ahora: ¿cuál es tu favorita?",
+                "Sugerencias para mejorar el matchmaking"
+            ],
+            legends: [
+                "Guía completa de Wraith para ranked",
+                "Octane o Pathfinder: ¿quién es mejor para rotar?",
+                "Cómo counterear a Horizon en zonas cerradas"
+            ],
+            weapons: [
+                "R-301 vs Flatline: ¿cuál prefieres en Season 24?",
+                "Mejor loadout para late game",
+                "Las armas Care Package más rotas del meta"
+            ],
+            competitive: [
+                "Próximo torneo: ALGS Split 2 Playoffs",
+                "Cómo subir a Predator en ranked",
+                "Estrategias para jugar en torneos amateur"
+            ]
+        };
+
+        function loadThreads(category) {
+            const container = document.getElementById('threadsContainer');
+            if (!category || !threadsData[category]) {
+                container.innerHTML = '<div class="thread-item">Selecciona una categoría para ver los temas</div>';
+                return;
+            }
+            const threads = threadsData[category];
+            container.innerHTML = threads.map(thread => `<div class="thread-item">💬 ${thread}</div>`).join('');
+        }
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                loadThreads(category);
+            });
+        });
+
+        // Encuesta
+        document.getElementById('submitSurvey').addEventListener('click', () => {
+            const favLegend = document.querySelector('input[name="favLegend"]:checked');
+            const platform = document.getElementById('platform').value;
+            const comment = document.getElementById('comment').value;
+            if (!favLegend) {
+                document.getElementById('surveyResult').innerHTML = '⚠️ Por favor selecciona tu leyenda favorita.';
+                return;
+            }
+            document.getElementById('surveyResult').innerHTML = `✅ ¡Gracias, Leyenda! Tu voto por <strong>${favLegend.value}</strong> en ${platform} ha sido registrado. ¡Nos vemos en el Ring!`;
+            document.getElementById('comment').value = '';
+        });
+
+        console.log("Bienvenido a Apex Hub - ¡Prepárate para saltar al Ring!");
+        
+        // Función para volver al índice
+        function goToMain() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

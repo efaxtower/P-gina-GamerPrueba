@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GZ: CS2  | Counter-Strike 2 Info Center </title>
+    <style>
+        /* ===== ESTILOS NEÓN ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 2px solid #00ff88;
+            box-shadow: 0 4px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover {
+            background: #00cc66;
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            color: white;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('co2.png') center/cover no-repeat;
+            opacity: 0.6;
+            z-index: -2;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #00ff88, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 10px rgba(0, 204, 255, 0.5); }
+        }
+
+        .hero p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            margin-bottom: 2rem;
+            border-right: 2px solid #00ff88;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff88; }
+        }
+
+        /* Secciones */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #00ff88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Grids */
+        .grid-3, .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #333;
+        }
+
+        /* Introducción con dos columnas */
+        .intro-container {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .intro-container:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+        .intro-text {
+            flex: 1;
+        }
+        .intro-image {
+            flex: 0.8;
+            text-align: center;
+        }
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #00ff88;
+        }
+        @media (max-width: 768px) {
+            .intro-container {
+                flex-direction: column;
+            }
+            .intro-image {
+                margin-top: 1rem;
+            }
+        }
+
+        /* Tabla */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .specs-table th, .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        .specs-table th {
+            color: #00ff88;
+            background: #0a0a0a;
+        }
+        .specs-table tr:hover {
+            background: #252525;
+        }
+
+        /* Foro */
+        .forum-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .category-card {
+            background: #1a1a1a;
+            border-left: 3px solid #00ff88;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+        .category-card:hover {
+            background: #252525;
+            transform: translateX(5px);
+        }
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+        .thread-list {
+            margin-top: 1rem;
+        }
+        .thread-item {
+            background: #1a1a1a;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        .thread-item:hover {
+            background: #252525;
+            border-left: 3px solid #00ff88;
+        }
+
+        /* Encuesta */
+        .survey-section {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .survey-question {
+            margin-bottom: 1.5rem;
+        }
+        .survey-question label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+        .survey-question input, .survey-question select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+        }
+
+        /* Enlaces iluminados (solo un botón) */
+        .link-card {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+        }
+        .link-card a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        .link-card a:hover {
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+        }
+        .link-card h3 {
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            border-top: 1px solid #00ff88;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .grid-3, .links-grid {
+                grid-template-columns: 1fr;
+            }
+            .forum-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CS2<span> HUB</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">PAGINA ANTERIOR</a></li>
+                <li><a href="#intro">Qué es</a></li>
+                <li><a href="#innovaciones">Innovaciones</a></li>
+                <li><a href="#modos">Modos</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#esports">Esports</a></li>
+                <li><a href="#foro">Foro</a></li>
+                <li><a href="#encuesta">Encuesta</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Counter-Strike 2</h1>
+            <p>El shooter táctico definitivo, reconstruido en Source 2.</p>
+            <div id="player-count" style="font-family: 'Share Tech Mono'; font-size: 1.2rem; color: #00ff88; margin-top: 1rem;">Cargando jugadores en línea...</div>
+        </div>
+    </header>
+
+    <!-- Introducción -->
+    <section id="intro" class="section">
+        <h2>¿Qué es Counter-Strike 2?</h2>
+        <div class="intro-container">
+            <div class="intro-text">
+                <p>Counter-Strike 2 es la evolución definitiva de <em>CS:GO</em>, reconstruido sobre el motor <strong>Source 2</strong>. Es un <strong>tactical shooter</strong> en primera persona donde dos equipos —Terroristas (T) y Antiterroristas (CT)— compiten por objetivos (plantar/desactivar la bomba o rescatar rehenes). A diferencia de otros juegos, aquí no hay construcción; todo depende de tu puntería, el uso de granadas y la estrategia de equipo.</p>
+            </div>
+            <div class="intro-image">
+                <img src="co6.png" alt="CS2 gameplay">
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Modos de juego -->
+    <section id="modos" class="section">
+        <h2>Modos de Juego en 2026</h2>
+        <div class="grid-3">
+            <div class="card">
+                <img class="game-img" src="co3.png" alt="Premier">
+                <h3>Modo Premier</h3>
+                <p>El competitivo principal con sistema de "Pick & Ban" de mapas y clasificación mundial basada en el <strong>CS Rating</strong>.</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="co4.png" alt="Competitivo por mapa">
+                <h3>Competitivo por Mapas</h3>
+                <p>Rango específico para cada mapa. Puedes ser Global Elite en Mirage pero Plata en Nuke.</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="co5.png" alt="Wingman">
+                <h3>Compañero (Wingman)</h3>
+                <p>Partidas rápidas 2vs2 en mapas reducidos. Perfecto para practicar con un amigo.</p>
+            </div>
+           
+        </div>
+    </section>
+
+    <!-- Requisitos técnicos -->
+    <section id="requisitos" class="section">
+        <h2>Requisitos Técnicos (PC 2026)</h2>
+        <table class="specs-table">
+            <thead>
+                <tr><th>Componente</th><th>Mínimo</th><th>Recomendado (Competitivo)</th>  </tr>
+            </thead>
+            <tbody>
+                <tr><td>Procesador</td><td>Intel Core i5-750 / AMD Phenom II X4</td><td>Intel i7-13700F / Ryzen 7 7800X3D</td></tr>
+                <tr><td>Memoria RAM</td><td>8 GB</td><td>16 GB - 32 GB</td></tr>
+                <tr><td>Tarjeta Gráfica</td><td>GPU 1 GB (DirectX 11)</td><td>NVIDIA RTX 4070 / RX 7800 XT</td></tr>
+                <tr><td>Almacenamiento</td><td>85 GB SSD</td><td>85 GB NVMe SSD</td></tr>
+                <tr><td>Sistema Operativo</td><td>Windows 10/11 64-bit</td><td>Windows 11</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Escena competitiva -->
+    <section id="esports" class="section">
+        <h2>🏆 Escena Competitiva 2026 (Esports)</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>IEM Cologne Major 2026</h3>
+                <p>Junio – La "Catedral del Counter-Strike". El torneo más prestigioso del verano.</p>
+            </div>
+            <div class="card">
+                <h3>Esports World Cup 2026</h3>
+                <p>Agosto – Riad, con una bolsa de premios de <strong>2 millones de dólares</strong>.</p>
+            </div>
+            <div class="card">
+                <h3>PGL Major Singapore</h3>
+                <p>Noviembre/Diciembre – El último gran torneo del año.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enlaces útiles (solo descarga) -->
+    <section id="enlaces" class="section">
+        <h2>Enlaces Útiles</h2>
+        <div class="links-grid" style="display: flex; justify-content: center;">
+            <div class="link-card">
+                <h3>🎮 Descarga</h3>
+                <p>Juega gratis en Steam</p>
+                <a href="https://store.steampowered.com/app/730/CounterStrike_2/" target="_blank">store.steampowered.com →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foro -->
+    <section id="foro" class="section">
+        <h2>Foro de la Comunidad</h2>
+        <div class="forum-categories">
+            <div class="category-card" data-category="general">
+                <h3>💬 General</h3>
+                <p>Discusiones sobre el juego</p>
+            </div>
+            <div class="category-card" data-category="tactics">
+                <h3>🎯 Tácticas & Estrategias</h3>
+                <p>Smokes, flashes y setups</p>
+            </div>
+            <div class="category-card" data-category="loadout">
+                <h3>🔫 Loadout & Armas</h3>
+                <p>Mejores combinaciones</p>
+            </div>
+            <div class="category-card" data-category="competitive">
+                <h3>🏆 Competitivo</h3>
+                <p>Tornejos y rangos</p>
+            </div>
+        </div>
+        <div id="threadsContainer" class="thread-list">
+            <div class="thread-item">Selecciona una categoría para ver los temas</div>
+        </div>
+    </section>
+
+    <!-- Encuesta -->
+    <section id="encuesta" class="section">
+        <h2>Opina sobre CS2</h2>
+        <div class="survey-section">
+            <div class="survey-question">
+                <label>¿Cuál es tu modo favorito?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="favMode" value="Premier"> Premier</label>
+                    <label><input type="radio" name="favMode" value="Competitivo por mapa"> Competitivo por mapa</label>
+                    <label><input type="radio" name="favMode" value="Wingman"> Wingman</label>
+                    <label><input type="radio" name="favMode" value="Arms Race"> Carrera de Armamentos</label>
+                </div>
+            </div>
+            <div class="survey-question">
+                <label>Plataforma principal</label>
+                <select id="platform">
+                    <option>PC (Steam)</option>
+                    <option>Steam Deck</option>
+                    <option>PC (Otra)</option>
+                </select>
+            </div>
+            <div class="survey-question">
+                <label>Comentario (opcional)</label>
+                <input type="text" id="comment" placeholder="Escribe tu opinión...">
+            </div>
+            <button class="btn btn-primary" id="submitSurvey">Enviar respuesta</button>
+            <div id="surveyResult" style="margin-top: 1rem; color: #00ff88;"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 CS2 Hub - Comunidad de Counter-Strike 2. Todos los derechos reservados a Valve Corporation.</p>
+    </footer>
+
+    <script>
+        // Contador de jugadores (simulado)
+        function updatePlayers() {
+            const playerCountSpan = document.getElementById('player-count');
+            const randomPlayers = Math.floor(Math.random() * (1800000 - 1200000) + 1200000);
+            playerCountSpan.innerHTML = `🎮 Jugadores en línea: ${randomPlayers.toLocaleString()}`;
+        }
+        setInterval(updatePlayers, 5000);
+        updatePlayers();
+
+        // Foro simulado
+        const threadsData = {
+            general: [
+                "¿Qué opinas del nuevo humo volumétrico?",
+                "Mejores momentos de la temporada",
+                "Sugerencias para el próximo parche"
+            ],
+            tactics: [
+                "Smoke para Mirage Window",
+                "Cómo rotar rápido en Inferno",
+                "Guía de flashes para principiantes"
+            ],
+            loadout: [
+                "Mejor rifle actual: M4A4 o M4A1-S?",
+                "Loadout para mapas pequeños",
+                "Armas alternativas después de la actualización"
+            ],
+            competitive: [
+                "Próximo torneo: IEM Cologne",
+                "Cómo subir de CS Rating",
+                "Estrategias en partidas Premier"
+            ]
+        };
+
+        function loadThreads(category) {
+            const container = document.getElementById('threadsContainer');
+            if (!category || !threadsData[category]) {
+                container.innerHTML = '<div class="thread-item">Selecciona una categoría para ver los temas</div>';
+                return;
+            }
+            const threads = threadsData[category];
+            container.innerHTML = threads.map(thread => `<div class="thread-item">💬 ${thread}</div>`).join('');
+        }
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                loadThreads(category);
+            });
+        });
+
+        // Encuesta
+        document.getElementById('submitSurvey').addEventListener('click', () => {
+            const favMode = document.querySelector('input[name="favMode"]:checked');
+            const platform = document.getElementById('platform').value;
+            const comment = document.getElementById('comment').value;
+            if (!favMode) {
+                document.getElementById('surveyResult').innerHTML = '⚠️ Por favor selecciona tu modo favorito.';
+                return;
+            }
+            document.getElementById('surveyResult').innerHTML = `✅ ¡Gracias! Tu voto por <strong>${favMode.value}</strong> en ${platform} ha sido registrado.`;
+            document.getElementById('comment').value = '';
+        });
+
+        console.log("Bienvenido a CS2 Hub - ¡Prepara tu puntería!");
+    </script>
+</body>
+</html>

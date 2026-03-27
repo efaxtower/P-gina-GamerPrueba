@@ -1,0 +1,774 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Navegación */
+.navbar {
+    /* Fondo oscuro semi-transparente */
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Soporte para Safari */
+    
+    /* Borde neón con un ligero resplandor */
+    border-bottom: 2px solid rgba(0, 255, 136, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1); /* Brillo sutil hacia abajo */
+    
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease;
+}
+
+.navbar:hover {
+    background: rgba(15, 15, 15, 0.95);
+    border-bottom: 2px solid #00ff88; /* Verde sólido al pasar el mouse */
+    box-shadow: 0 4px 25px rgba(0, 255, 136, 0.2); /* Aumenta el resplandor */
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Estilos para los enlaces del menú */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem; /* Espacio entre links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e0e0e0; /* Gris muy claro para no cansar la vista */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Efecto Hover: El color cambia al verde neón */
+.nav-links a:hover {
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6); /* Pequeño brillo en el texto */
+}
+
+/* Línea animada debajo del link al pasar el mouse */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #00ff88;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+
+.logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    cursor: pointer;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00ff88;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Línea que crece desde el centro */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+.nav-links a:hover {
+    color: #00ff88;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+
+
+/* Botones */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #00ff88;
+    color: #00ff88;
+}
+
+.btn-outline:hover {
+    background: #00ff88;
+    color: #0a0a0a;
+}
+
+.btn-primary {
+    background: #00ff88;
+    color: #0a0a0a;
+}
+
+.btn-primary:hover {
+    background: #00cc66;
+    transform: translateY(-2px);
+}
+
+/* Contenido principal */
+.main-content {
+    margin-top: 80px;
+    min-height: calc(100vh - 150px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Secciones */
+.section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero */
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    color: white;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('d1.png') center/cover no-repeat;
+    opacity: 0.6;
+    z-index: -2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+.hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #00ff88, #00ccff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 10px rgba(0, 204, 255, 0.5);
+    }
+}
+
+.hero * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #cccccc;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    margin-bottom: 2rem;
+}
+
+/* Para el párrafo del hero con efecto de escritura sutil */
+.hero p {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #00ff88;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+    margin-bottom: 2rem;
+    border-right: 2px solid #00ff88;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #00ff88; }
+}
+
+
+
+/* Grids */
+.stats-grid,
+.games-grid,
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Tarjetas */
+.card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    border-color: #00ff88;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ff88;
+    margin: 0.5rem 0;
+}
+
+/* Imágenes */
+.game-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: #0a0a0a;
+    border: 1px solid #333;
+}
+
+.game-img-fallback {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border: 1px solid #00ff88;
+}
+
+/* Filtros */
+.filters {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.5rem 1.2rem;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #00ff88;
+    color: #0a0a0a;
+    border-color: #00ff88;
+}
+
+/* Ranking */
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ranking-table th,
+.ranking-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.ranking-table th {
+    color: #00ff88;
+    font-weight: bold;
+    background: #0a0a0a;
+}
+
+.ranking-table tr:hover {
+    background: #252525;
+}
+
+.position-1 {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.position-2 {
+    color: #c0c0c0;
+    font-weight: bold;
+}
+
+.position-3 {
+    color: #cd7f32;
+    font-weight: bold;
+}
+
+.trend-up {
+    color: #00ff88;
+}
+
+.trend-down {
+    color: #ff4444;
+}
+
+/* Foros */
+.forum-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.category-card {
+    background: #1a1a1a;
+    border-left: 3px solid #00ff88;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+
+.category-card:hover {
+    background: #252525;
+    transform: translateX(5px);
+}
+
+.category-card h3 {
+    margin-bottom: 0.5rem;
+    color: #00ff88;
+}
+
+.thread-item {
+    background: #1a1a1a;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #333;
+}
+
+.thread-item:hover {
+    background: #252525;
+    border-left: 3px solid #00ff88;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    border: 1px solid #00ff88;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: #00ff88;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+/* Encuesta */
+.survey-section {
+    background: #1a1a1a;
+    border: 1px solid #00ff88;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.survey-question {
+    margin-bottom: 1.5rem;
+}
+
+.survey-question label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+.survey-question input[type="text"],
+.survey-question select {
+    width: 100%;
+    padding: 0.8rem;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    background: #000000;
+    border-top: 1px solid #00ff88;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats-grid,
+    .games-grid,
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .forum-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .ranking-table {
+        font-size: 0.75rem;
+    }
+
+    .ranking-table th,
+    .ranking-table td {
+        padding: 0.5rem;
+    }
+
+    .game-img {
+        height: 150px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stats-grid,
+    .games-grid,
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Estilo base para el nombre de usuario */
+.auth-buttons span {
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 600;
+    color: #00ff88;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* Efecto glitch al hacer hover */
+.auth-buttons span:hover {
+    animation: glitch 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Animación glitch sutil */
+@keyframes glitch {
+    0% {
+        text-shadow: -1px 0 #ff00ff, 1px 0 #00ffff;
+        transform: skew(0deg);
+    }
+    20% {
+        text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;
+        transform: skew(2deg);
+    }
+    40% {
+        text-shadow: -1px 0 #ff00ff, 1px 0 #00ffff;
+        transform: skew(-1deg);
+    }
+    60% {
+        text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff;
+        transform: skew(1deg);
+    }
+    80% {
+        text-shadow: -1px 0 #ff00ff, 1px 0 #00ffff;
+        transform: skew(0deg);
+    }
+    100% {
+        text-shadow: 0 0 #ff00ff, 0 0 #00ffff;
+        transform: skew(0deg);
+    }
+}
+
+/* Efecto glitch más sutil (si prefieres algo más discreto) */
+.auth-buttons span:hover {
+    animation: subtleGlitch 0.2s ease-in-out;
+}
+
+@keyframes subtleGlitch {
+    0%, 100% {
+        text-shadow: 0 0 #ff00ff, 0 0 #00ffff;
+        transform: translateX(0);
+    }
+    25% {
+        text-shadow: -1px 0 #ff00ff, 1px 0 #00ffff;
+        transform: translateX(-1px);
+    }
+    75% {
+        text-shadow: 1px 0 #ff00ff, -1px 0 #00ffff;
+        transform: translateX(1px);
+    }
+}
+
+
+/* Paleta Dota 2: #a43424 (Rojo), #ffcc00 (Oro), #1b1e21 (Fondo) */
+
+body {
+    background-color: #0b0c0d;
+    background-image: 
+        radial-gradient(circle at top right, rgba(164, 52, 36, 0.1), transparent),
+        radial-gradient(circle at bottom left, rgba(0, 217, 255, 0.05), transparent);
+}
+
+/* Encabezado Hero con degradado de Dota */
+.hero h1 {
+    background: linear-gradient(135deg, #a43424, #ff9d00, #ffcc00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 15px rgba(164, 52, 36, 0.4);
+}
+
+/* Estilo para la tabla de requisitos dorada */
+.table-container {
+    border: 1px solid rgba(255, 204, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.ranking-table th {
+    background: #1b1e21;
+    color: #ffcc00;
+    border-bottom: 3px solid #a43424;
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+}
+
+.ranking-table td:first-child {
+    color: #ff9d00; /* Nombres de componentes en naranja/oro */
+    background: rgba(255, 157, 0, 0.02);
+}
+
+/* Botón principal estilo Dota */
+.btn-primary {
+    background: #a43424;
+    color: white;
+    border: 1px solid #ff9d00;
+}
+
+.btn-primary:hover {
+    background: #ff4b4b;
+    box-shadow: 0 0 15px rgba(255, 75, 75, 0.4);
+}
+
+/* Efectos de las tarjetas */
+.card:hover {
+    border-color: #ff9d00;
+    box-shadow: 0 5px 25px rgba(255, 157, 0, 0.15);
+}

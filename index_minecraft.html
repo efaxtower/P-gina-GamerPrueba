@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Minecraft Nexus - Portal de Supervivencia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* ===== TODO EL CSS PROPORCIONADO ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            background-image: url('m2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 2px solid #00ff88;
+            box-shadow: 0 4px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(23, 227, 132, 0.3);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+
+        .btn-outline:hover {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover {
+            background: #00cc66;
+            transform: translateY(-2px);
+        }
+
+        /* Contenido principal */
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 150px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Secciones */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 6rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            color: white;
+            overflow: hidden;
+            background-image: url('fondo-minecraft.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #00ff88, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 10px rgba(0, 204, 255, 0.5);
+            }
+        }
+
+        .hero * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            margin-bottom: 2rem;
+            border-right: 2px solid #00ff88;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff88; }
+        }
+
+        .hero-logo {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 1rem;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        /* Grids */
+        .stats-grid,
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Tarjetas */
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 0.5rem 0;
+        }
+
+        /* Ranking */
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .ranking-table th,
+        .ranking-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .ranking-table th {
+            color: #00ff88;
+            font-weight: bold;
+            background: #0a0a0a;
+        }
+
+        .ranking-table tr:hover {
+            background: #252525;
+        }
+
+        .position-1 {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .position-2 {
+            color: #c0c0c0;
+            font-weight: bold;
+        }
+
+        .position-3 {
+            color: #cd7f32;
+            font-weight: bold;
+        }
+
+        .trend-up {
+            color: #00ff88;
+        }
+
+        .trend-down {
+            color: #ff4444;
+        }
+
+        /* Foros */
+        .forum-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: #1a1a1a;
+            border-left: 3px solid #00ff88;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .category-card:hover {
+            background: #252525;
+            transform: translateX(5px);
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+
+        .thread-item {
+            background: #1a1a1a;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+
+        .thread-item:hover {
+            background: #252525;
+            border-left: 3px solid #00ff88;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content input,
+        .modal-content textarea,
+        .modal-content select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .modal-content input:focus,
+        .modal-content textarea:focus,
+        .modal-content select:focus {
+            outline: none;
+            border-color: #00ff88;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Encuesta */
+        .survey-section {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .survey-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .survey-question label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            border-top: 1px solid #00ff88;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+            }
+            .stats-grid,
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            .ranking-table {
+                font-size: 0.75rem;
+            }
+            .ranking-table th,
+            .ranking-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" id="logoHome">Minecraft</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a data-section="stats">Estadísticas</a></li>
+                <li><a data-section="ranking">Ranking</a></li>
+                <li><a data-section="forums">Foros</a></li>
+                <li><a data-section="survey">Encuesta</a></li>
+            </ul>
+            <div class="auth-buttons" id="authButtons">
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Sección INICIO -->
+            <section id="home" class="section active">
+                <div class="hero">
+                    <img src="m1.png" alt="BIENVENIDO AL NEXUS" class="hero-logo">
+                    <p>✦ El mejor servidor de supervivencia Minecraft ✦</p>
+                    <button class="btn btn-primary" id="exploreBtn" style="margin-top: 30px;" onclick="window.open('https://www.minecraft.net', '_blank')">Página Oficial de Minecraft →</button>
+                </div>
+                <div class="stats-grid">
+                    <div class="card"><h3>Jugadores activos</h3><div class="stat-number">1,284</div><p>conectados ahora</p></div>
+                    <div class="card"><h3>Mundos generados</h3><div class="stat-number">5.2K</div><p>+120 esta semana</p></div>
+                    <div class="card"><h3>Eventos completados</h3><div class="stat-number">48</div><p>próximo evento: viernes</p></div>
+                </div>
+                <div style="text-align:center; margin-top:2rem;"><p>🔮 Únete a nuestra comunidad, vota por tu servidor favorito y participa en eventos épicos.</p></div>
+            </section>
+
+            <!-- Estadísticas -->
+            <section id="stats" class="section">
+                <h2 style="color:#00ff88;">📊 Estadísticas Globales del Servidor</h2>
+                <div class="stats-grid">
+                    <div class="card"><h3>Total de jugadores únicos</h3><div class="stat-number">23,456</div><p>desde el lanzamiento</p></div>
+                    <div class="card"><h3>Horas jugadas</h3><div class="stat-number">1.2M</div><p>+25k esta semana</p></div>
+                    <div class="card"><h3>Top 1 clan</h3><div class="stat-number">Dragones de obsidiana</div><p>Puntos: 15240</p></div>
+                </div>
+            </section>
+
+            <!-- Ranking -->
+            <section id="ranking" class="section">
+                <h2 style="color:#00ff88;">🏆 Ranking de Jugadores - Temporada 7</h2>
+                <table class="ranking-table" id="rankingTable">
+                    <thead>
+                        <tr><th>#</th><th>Jugador</th><th>Puntos</th><th>Kills</th><th>Tendencia</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- Foros -->
+            <section id="forums" class="section">
+                <h2 style="color:#00ff88;">💬 Foros de la Comunidad</h2>
+                <div class="forum-categories" id="forumCategories"></div>
+                <div id="threadsContainer"></div>
+            </section>
+
+            <!-- Encuesta -->
+            <section id="survey" class="section">
+                <h2 style="color:#00ff88;">📝 Encuesta: ¿Qué actualización quieres?</h2>
+                <div class="survey-section">
+                    <div class="survey-question">
+                        <label>1. Tu bioma favorito para la próxima expansión</label>
+                        <select id="biomeSelect">
+                            <option>Taiga nevada</option>
+                            <option>Manglar</option>
+                            <option>Montañas rocosas</option>
+                            <option>Islas flotantes</option>
+                        </select>
+                    </div>
+                    <div class="survey-question">
+                        <label>2. ¿Qué mecánica debería mejorarse?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="mechanic" value="Combate"> Combate</label>
+                            <label><input type="radio" name="mechanic" value="Construcción"> Construcción</label>
+                            <label><input type="radio" name="mechanic" value="Exploración"> Exploración</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="submitSurvey">Enviar voto</button>
+                    <p id="surveyFeedback" style="margin-top:1rem; color:#00ff88;"></p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer"><p>© 2025 Minecraft Nexus - Comunidad no oficial de jugadores. Todos los derechos inspirados en el universo Minecraft.</p></footer>
+
+    <script>
+        // ---------- DATA ----------
+        const rankingPlayers = [
+            { name: "NotchHero", points: 12500, kills: 890, trend: "up" },
+            { name: "CreeperSlayer", points: 10820, kills: 743, trend: "up" },
+            { name: "DiamondMiner", points: 9760, kills: 612, trend: "down" },
+            { name: "RedstoneMaster", points: 8540, kills: 501, trend: "up" },
+            { name: "EnderWalker", points: 7200, kills: 398, trend: "down" }
+        ];
+        const categories = ["General", "Sugerencias", "Eventos", "Clanes"];
+        const threads = {
+            General: ["📢 Reglas del servidor", "💎 Mejores lugares para minar diamante", "🤝 ¿Cómo unirme a un clan?"],
+            Sugerencias: ["➕ Añadir nuevo plugin de mascotas", "⚔️ Balancear el combate PvP", "🌍 Mundo con más biomas raros"],
+            Eventos: ["🎉 Evento de construcción: Sábado 19hs", "🏆 Torneo de The Bridge: ¡Inscríbete!"],
+            Clanes: ["🛡️ Clan Obsidiana busca miembros", "⚔️ Guerra de clanes: resultado final"]
+        };
+
+        function renderRanking() {
+            const tbody = document.querySelector("#rankingTable tbody");
+            tbody.innerHTML = rankingPlayers.map((p, idx) => `
+                <tr>
+                    <td class="${idx===0?'position-1':idx===1?'position-2':idx===2?'position-3':''}">${idx+1}</td>
+                    <td>${p.name}</td>
+                    <td>${p.points}</td>
+                    <td>${p.kills}</td>
+                    <td class="${p.trend === 'up' ? 'trend-up' : 'trend-down'}">${p.trend === 'up' ? '▲ +'+(Math.floor(Math.random()*200)+50) : '▼ -'+(Math.floor(Math.random()*100)+20)}</td>
+                </tr>
+            `).join("");
+        }
+
+        function renderForums() {
+            const catsDiv = document.getElementById("forumCategories");
+            catsDiv.innerHTML = categories.map(cat => `<div class="category-card" data-category="${cat}"><h3>${cat}</h3><p>${threads[cat]?.length || 0} temas</p></div>`).join("");
+            document.querySelectorAll(".category-card").forEach(card => {
+                card.addEventListener("click", () => {
+                    const cat = card.getAttribute("data-category");
+                    const container = document.getElementById("threadsContainer");
+                    if(threads[cat]){
+                        container.innerHTML = `<h3 style="color:#00ff88;">📌 ${cat}</h3>` + threads[cat].map(t => `<div class="thread-item">${t}</div>`).join("");
+                    } else container.innerHTML = "<p>No hay temas aún.</p>";
+                });
+            });
+            document.getElementById("threadsContainer").innerHTML = "<p style='opacity:0.7;'>Selecciona una categoría para ver hilos</p>";
+        }
+
+        // Secciones
+        function showSection(sectionId) {
+            document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        // Eventos Navegación
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", (e) => {
+                const section = link.getAttribute("data-section");
+                if(section) showSection(section);
+            });
+        });
+        document.getElementById("logoHome")?.addEventListener("click", () => showSection("home"));
+        document.getElementById("exploreBtn")?.addEventListener("click", () => showSection("stats"));
+
+        // Encuesta
+        document.getElementById("submitSurvey")?.addEventListener("click", () => {
+            const biome = document.getElementById("biomeSelect").value;
+            const mechanic = document.querySelector('input[name="mechanic"]:checked')?.value;
+            if(!mechanic) { document.getElementById("surveyFeedback").innerText = "Selecciona una mecánica para votar."; return; }
+            document.getElementById("surveyFeedback").innerHTML = `✅ Voto registrado: ${biome} + mejora en ${mechanic}. ¡Gracias!`;
+        });
+
+        // Inicialización completa
+        function init() {
+            renderRanking();
+            renderForums();
+        }
+        init();
+    </script>
+</body>
+</html>

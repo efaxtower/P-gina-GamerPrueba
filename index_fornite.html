@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GZ: Fortnite | Info Center 2026</title>
+    <style>
+        /* ===== ESTILOS DEL CÓDIGO REFERENCIA ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        .navbar {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar:hover {
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 2px solid #00ff88;
+            box-shadow: 0 4px 25px rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+
+        .btn-outline:hover {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover {
+            background: #00cc66;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            color: white;
+            overflow: hidden;
+            height: auto;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1589241062272-c0a000072dfa?q=80&w=2000') center/cover no-repeat;
+            opacity: 0.6;
+            z-index: -2;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #00ff88, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 10px rgba(0, 204, 255, 0.5); }
+        }
+
+        .hero p {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #00ff88;
+            text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            margin-bottom: 2rem;
+            border-right: 2px solid #00ff88;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff88; }
+        }
+
+        /* Secciones */
+        .section {
+            display: block;
+            animation: fadeIn 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #00ff88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Grids */
+        .games-grid,
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Tarjetas de enlaces iluminadas */
+        .link-card {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+            border-color: #00ff88;
+        }
+        .link-card a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
+            transition: all 0.3s;
+        }
+        .link-card a:hover {
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+            transform: scale(1.05);
+        }
+        .link-card h3 {
+            color: #fff;
+            margin-bottom: 0.8rem;
+        }
+        .link-card p {
+            color: #ccc;
+        }
+
+        /* Tarjetas normales para modos */
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Imagen dentro de las tarjetas de modos */
+        .game-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+        }
+
+        /* Sección de introducción con dos columnas */
+        .intro-container {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .intro-container:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+        .intro-text {
+            flex: 1;
+        }
+        .intro-image {
+            flex: 0.8;
+            text-align: center;
+        }
+        .intro-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            border: 1px solid #00ff88;
+        }
+        @media (max-width: 768px) {
+            .intro-container {
+                flex-direction: column;
+            }
+            .intro-image {
+                margin-top: 1rem;
+            }
+        }
+
+        /* Tablas */
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .specs-table th {
+            color: #00ff88;
+            font-weight: bold;
+            background: #0a0a0a;
+        }
+
+        .specs-table tr:hover {
+            background: #252525;
+        }
+
+        /* Foro */
+        .forum-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-card {
+            background: #1a1a1a;
+            border-left: 3px solid #00ff88;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .category-card:hover {
+            background: #252525;
+            transform: translateX(5px);
+        }
+
+        .category-card h3 {
+            margin-bottom: 0.5rem;
+            color: #00ff88;
+        }
+
+        .thread-list {
+            margin-top: 1rem;
+        }
+
+        .thread-item {
+            background: #1a1a1a;
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #333;
+        }
+
+        .thread-item:hover {
+            background: #252525;
+            border-left: 3px solid #00ff88;
+        }
+
+        /* Encuesta */
+        .survey-section {
+            background: #1a1a1a;
+            border: 1px solid #00ff88;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .survey-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .survey-question label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .survey-question input[type="text"],
+        .survey-question select {
+            width: 100%;
+            padding: 0.8rem;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            border-top: 1px solid #00ff88;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .games-grid,
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            .forum-categories {
+                grid-template-columns: 1fr;
+            }
+            .radio-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .specs-table {
+                font-size: 0.75rem;
+            }
+            .specs-table th,
+            .specs-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">GZ:<span> FORTNITE</span></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="#intro">Introducción</a></li>
+                <li><a href="#modos">Modos</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#foro">Foro</a></li>
+                <li><a href="#encuesta">Encuesta</a></li>
+                <!-- Enlace a sitio oficial eliminado -->
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Todo sobre el Universo Fortnite</h1>
+            <p>Explora, Construye y Sobrevive en el Battle Royale más grande del mundo.</p>
+            <div id="player-count" style="font-family: 'Share Tech Mono'; font-size: 1.2rem; color: #00ff88; margin-top: 1rem;">Cargando jugadores en línea...</div>
+        </div>
+    </header>
+
+    <!-- Sección Introducción con imagen local f1.png -->
+    <section id="intro" class="section">
+        <h2>¿Qué es Fortnite?</h2>
+        <div class="intro-container">
+            <div class="intro-text">
+                <p>Lanzado originalmente en 2017 por <strong>Epic Games</strong>, Fortnite ha evolucionado de un simple juego de "último hombre en pie" a un <strong>Metaverso persistente</strong>. Es una plataforma donde convergen el cine, la música, los deportes y los videojuegos. Gracias al motor <strong>Unreal Engine 5</strong>, ofrece gráficos de última generación y una física destructible realista.</p>
+            </div>
+            <div class="intro-image">
+                <img src="f1.png" alt="Fortnite gameplay" style="width:100%; max-width:300px; height:auto;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Modos de Juego con imágenes locales f2.png, f3.png, f4.png -->
+    <section id="modos" class="section">
+        <h2>Modos de Juego Populares</h2>
+        <div class="games-grid">
+            <div class="card">
+                <img class="game-img" src="f2.png" alt="Battle Royale">
+                <h3>Battle Royale</h3>
+                <p>El corazón del juego. 100 jugadores luchan en una isla que se encoge. Disfruta con <strong>Construcción</strong> (madera, piedra, metal) o <strong>Cero Construcción</strong> (puntería y cobertura natural).</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="f3.png" alt="LEGO Fortnite">
+                <h3>LEGO Fortnite</h3>
+                <p>Mundo de supervivencia <em>crafting</em>. Recolecta recursos, construye aldeas y defiéndete de criaturas nocturnas con la estética de piezas LEGO.</p>
+            </div>
+            <div class="card">
+                <img class="game-img" src="f4.png" alt="Rocket Racing">
+                <h3>Rocket Racing</h3>
+                <p>Desarrollado por Psyonix. Carreras arcade con pistas que desafían la gravedad. Coches que vuelan y conducen por el techo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Requisitos Técnicos -->
+    <section id="requisitos" class="section">
+        <h2>Requisitos Técnicos (PC 2026)</h2>
+        <table class="specs-table">
+            <thead>
+                <tr><th>Componente</th><th>Mínimo</th><th>Recomendado</th>                 </tr>
+            </thead>
+            <tbody>
+                <tr><td>Procesador</td><td>Intel Core i3-3225 3.3 GHz</td><td>Intel Core i5-11600K / Ryzen 5 5600X</td></tr>
+                <tr><td>Memoria RAM</td><td>8 GB</td><td>16 GB o más</td></tr>
+                <tr><td>Tarjeta Gráfica</td><td>Intel HD 4000 / AMD Radeon R7</td><td>NVIDIA RTX 3060 / Radeon RX 6700</td></tr>
+                <tr><td>Almacenamiento</td><td>30 GB SSD</td><td>50 GB NVMe SSD</td></tr>
+                <tr><td>Sistema Operativo</td><td>Windows 10/11 64-bit</td><td>Windows 11 64-bit</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Sección Foro -->
+    <section id="foro" class="section">
+        <h2>Foro de la Comunidad</h2>
+        <div class="forum-categories">
+            <div class="category-card" data-category="general">
+                <h3>📢 General</h3>
+                <p>Discusiones sobre el juego</p>
+            </div>
+            <div class="category-card" data-category="tips">
+                <h3>🎮 Consejos y trucos</h3>
+                <p>Mejora tu juego</p>
+            </div>
+            <div class="category-card" data-category="construction">
+                <h3>🏗️ Construcción</h3>
+                <p>Técnicas y estructuras</p>
+            </div>
+            <div class="category-card" data-category="competitive">
+                <h3>🏆 Competitivo</h3>
+                <p>Tornejos y estrategias</p>
+            </div>
+        </div>
+        <div id="threadsContainer" class="thread-list">
+            <div class="thread-item">Selecciona una categoría para ver los temas</div>
+        </div>
+    </section>
+
+    <!-- Sección Encuesta -->
+    <section id="encuesta" class="section">
+        <h2>Opina sobre Fortnite</h2>
+        <div class="survey-section">
+            <div class="survey-question">
+                <label>¿Cuál es tu modo favorito?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="favMode" value="Battle Royale"> Battle Royale</label>
+                    <label><input type="radio" name="favMode" value="Zero Build"> Zero Build</label>
+                    <label><input type="radio" name="favMode" value="LEGO"> LEGO Fortnite</label>
+                    <label><input type="radio" name="favMode" value="Rocket Racing"> Rocket Racing</label>
+                </div>
+            </div>
+            <div class="survey-question">
+                <label>Plataforma principal</label>
+                <select id="platform">
+                    <option>PC</option>
+                    <option>PlayStation</option>
+                    <option>Xbox</option>
+                    <option>Nintendo Switch</option>
+                    <option>Móvil</option>
+                </select>
+            </div>
+            <div class="survey-question">
+                <label>Comentario (opcional)</label>
+                <input type="text" id="comment" placeholder="Escribe tu opinión...">
+            </div>
+            <button class="btn btn-primary" id="submitSurvey">Enviar respuesta</button>
+            <div id="surveyResult" style="margin-top: 1rem; color: #00ff88;"></div>
+        </div>
+    </section>
+
+    <!-- Sección Enlaces Útiles (botones iluminados al final) -->
+    <section id="enlaces" class="section">
+        <h2>Enlaces Útiles</h2>
+        <div class="links-grid">
+            <div class="link-card">
+                <h3>📥 Descarga</h3>
+                <p>Obtén Fortnite gratis</p>
+                <a href="https://www.fortnite.com/download" target="_blank">fortnite.com/download →</a>
+            </div>
+            <div class="link-card">
+                <h3>🟢 Estado de Servidores</h3>
+                <p>Verifica el estado en tiempo real</p>
+                <a href="https://status.epicgames.com" target="_blank">status.epicgames.com →</a>
+            </div>
+            <div class="link-card">
+                <h3>🏆 Competitivo (E-sports)</h3>
+                <p>Noticias y torneos oficiales</p>
+                <a href="https://www.fortnite.com/competitive" target="_blank">fortnite.com/competitive →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Fan Page de Fortnite. Todos los derechos reservados a Epic Games.</p>
+    </footer>
+
+    <script>
+        // ===== CONTADOR DE JUGADORES =====
+        function updatePlayers() {
+            const playerCountSpan = document.getElementById('player-count');
+            const randomPlayers = Math.floor(Math.random() * (3500000 - 2000000) + 2000000);
+            playerCountSpan.innerHTML = `🔥 Jugadores activos ahora: ${randomPlayers.toLocaleString()}`;
+        }
+        setInterval(updatePlayers, 5000);
+        updatePlayers();
+
+        // ===== FORO =====
+        const threadsData = {
+            general: [
+                "¿Qué opinas del nuevo mapa?",
+                "Mejores momentos de la temporada",
+                "Sugerencias para el próximo parche"
+            ],
+            tips: [
+                "Cómo mejorar tu puntería",
+                "Secretos de construcción rápida",
+                "Guía de loot inicial"
+            ],
+            construction: [
+                "Técnicas de ramp rush",
+                "Ediciones avanzadas",
+                "Defensas 90°"
+            ],
+            competitive: [
+                "Próximo torneo: FNCS",
+                "Meta actual de armas",
+                "Estrategias en endgame"
+            ]
+        };
+
+        function loadThreads(category) {
+            const container = document.getElementById('threadsContainer');
+            if (!category || !threadsData[category]) {
+                container.innerHTML = '<div class="thread-item">Selecciona una categoría para ver los temas</div>';
+                return;
+            }
+            const threads = threadsData[category];
+            container.innerHTML = threads.map(thread => `<div class="thread-item">💬 ${thread}</div>`).join('');
+        }
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.getAttribute('data-category');
+                loadThreads(category);
+            });
+        });
+
+        // ===== ENCUESTA =====
+        document.getElementById('submitSurvey').addEventListener('click', () => {
+            const favMode = document.querySelector('input[name="favMode"]:checked');
+            const platform = document.getElementById('platform').value;
+            const comment = document.getElementById('comment').value;
+            if (!favMode) {
+                document.getElementById('surveyResult').innerHTML = '⚠️ Por favor selecciona tu modo favorito.';
+                return;
+            }
+            document.getElementById('surveyResult').innerHTML = `✅ ¡Gracias! Tu voto por <strong>${favMode.value}</strong> en ${platform} ha sido registrado.`;
+            document.getElementById('comment').value = '';
+        });
+
+        console.log("Bienvenido a GZ: FORTNITE - ¡Buena suerte en la isla!");
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerZone - VALORANT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_valorant.css">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">GZ: VALORANT</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Página principal</a></li>
+                <li><a href="#agentes">Agentes</a></li>
+                <li><a href="#mapas">Mapas</a></li>
+                <li><a href="#requisitos">Requisitos</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <span>FPS</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <header class="hero" id="inicio">
+                <h1>VALORANT</h1>
+                <p>Desafía los límites. No solo dispares, crea el momento...</p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://playvalorant.com/" target="_blank">
+                        <button class="btn btn-primary">Página Oficial</button>
+                    </a>
+                </div>
+            </header>
+
+            <section class="section active" id="agentes">
+                <h2 style="font-family: 'Orbitron'; color: #00ff88; margin-bottom: 2rem; text-align: center;">// AGENTES: PROTOCOLO VALORANT</h2>
+                
+                <div class="card mixed-card">
+                    <div class="card-content">
+                        <div class="stat-number">DUELISTAS</div>
+                        <h3>El Filo del Equipo</h3>
+                        <p class="lore-text">Agentes como Jett o Phoenix que buscan el enfrentamiento directo. Su kit de habilidades les permite entrar en zonas disputadas y conseguir bajas decisivas para abrir el mapa.</p>
+                    </div>
+                    <div class="card-image" style="background-image: url('v2.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                </div>
+
+                <div class="card mixed-card image-left">
+                    <div class="card-image" style="background-image: url('v3.png'); background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+                    <div class="card-content">
+                        <div class="stat-number">CENTINELAS</div>
+                        <h3>Expertos en Defensa</h3>
+                        <p class="lore-text">Sage, Cypher o Killjoy son los pilares de la defensa. Se encargan de cerrar rutas de flanqueo y proteger sitios de bomba, asegurando que el enemigo no pueda avanzar sin ser detectado.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section active" id="mapas" style="margin-top: 4rem;">
+                <div class="card mixed-card">
+                    <div class="card-content">
+                        <h2 style="font-family: 'Orbitron'; color: #00ccff; margin-bottom: 1rem;">// LOCALIZACIONES: CAMPOS DE BATALLA</h2>
+                        <p style="font-family: 'Share Tech Mono'; color: #ccc;">
+                            Desde las calles de Japón en Haven hasta la arquitectura futurista de Abyss. Cada mapa presenta mecánicas únicas: portales, cuerdas, puertas destructibles y tres sitios de bomba.
+                        </p>
+                        <br>
+                        <ul style="list-style: none; color: #00ff88; font-family: 'Share Tech Mono';">
+                            <li>> Haven: Tres sitios para defender.</li>
+                            <li>> Bind: Teletransportadores tácticos.</li>
+                            <li>> Ascent: Puertas mecánicas de alta resistencia.</li>
+                        </ul>
+                    </div>
+                    <div class="card-image" style="background-image: url('v4.png');">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section active" id="requisitos" style="margin-top: 4rem;">
+                <h2 style="font-family: 'Orbitron'; color: #ff4655; margin-bottom: 2rem; text-align: center;">// ESPECIFICACIONES_TÉCNICAS</h2>
+                <div class="table-container">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>NIVEL</th>
+                                <th>HARDWARE</th>
+                                <th>RENDIMIENTO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MÍNIMOS</td>
+                                <td>Intel Core 2 Duo E8400 / Intel HD 4000</td>
+                                <td>30 FPS</td>
+                            </tr>
+                            <tr>
+                                <td>RECOMENDADOS</td>
+                                <td>Intel i3-4150 / GeForce GT 730</td>
+                                <td>60 FPS</td>
+                            </tr>
+                            <tr>
+                                <td>HIGH-END</td>
+                                <td>Intel i5-9400F / GTX 1050 Ti</td>
+                                <td>144+ FPS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="section active" id="status" style="margin-top: 4rem; margin-bottom: 4rem;">
+                <div class="card" style="border-color: #ff4655; background: rgba(20, 10, 10, 0.8);">
+                    <h3 style="font-family: 'Orbitron'; color: #ff4655; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                        <span class="pulse-red"></span> RIOT_VAL_SERVER_STATUS
+                    </h3>
+                    <div class="stats-grid">
+                        <div class="log-entry">
+                            <h4>LATAM NORTH</h4>
+                            <p class="trend-up">● OPERATIVO <span style="color: #666;">- 35ms</span></p>
+                        </div>
+                        <div class="log-entry">
+                            <h4>LATAM SOUTH</h4>
+                            <p class="trend-up">● OPERATIVO <span style="color: #666;">- 40ms</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 GamerZone // VALORANT_DATA_NODE // "Juega para ganar, entrena para dominar"</p>
+    </footer>
+
+</body>
+</html>
