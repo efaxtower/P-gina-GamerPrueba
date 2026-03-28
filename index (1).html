@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerZone - Comunidad Gamer</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="navigateTo('home')">GAMERZONE_BETA</div>
+            <div class="nav-links">
+                <a onclick="navigateTo('home')">Inicio</a>
+                <a onclick="navigateTo('games')">Juegos</a>
+                <a onclick="navigateTo('community')">Comunidad</a>
+                <a onclick="navigateTo('ranking')">Ranking</a>
+                <a onclick="navigateTo('survey')">Encuesta</a>
+            </div>
+            <div class="auth-buttons" id="authButtons"></div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Inicio -->
+        <div id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>GAMERZONE_BETA</h1>
+                    <p>Domina el meta, supera tus límites, conecta con la comunidad</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="navigateTo('games')">Explorar Juegos</button>
+                        <button class="btn btn-outline" onclick="navigateTo('community')">Unirse a la Comunidad</button>
+                    </div>
+                </div>
+
+                <h2>Estadísticas Destacadas</h2>
+                <div class="stats-grid" id="statsGrid"></div>
+
+                <h2 style="margin-top: 2rem;">Juegos Destacados</h2>
+                <div class="games-grid" id="featuredGames"></div>
+
+                <h2 style="margin-top: 2rem;">Últimas Publicaciones</h2>
+                <div class="posts-grid" id="latestPosts"></div>
+            </div>
+        </div>
+
+        <!-- Juegos -->
+        <div id="games" class="section">
+            <div class="container">
+                <h1>Catálogo de Juegos</h1>
+                <div class="filters" id="gameFilters"></div>
+                <div class="games-grid" id="gamesGrid"></div>
+            </div>
+        </div>
+
+        <!-- Comunidad -->
+        <div id="community" class="section">
+            <div class="container">
+                <h1>Comunidad y Foros</h1>
+                <div id="forumView"></div>
+            </div>
+        </div>
+
+        <!-- Ranking -->
+        <div id="ranking" class="section">
+            <div class="container">
+                <h1>Ranking de Juegos</h1>
+                <div style="margin: 1rem 0; font-size: 0.8rem; color: #00ff88;">🔄 Actualizando cada 60 segundos</div>
+                <div id="rankingTable"></div>
+            </div>
+        </div>
+
+        <!-- Encuesta -->
+        <div id="survey" class="section">
+            <div class="container">
+                <div class="survey-section">
+                    <h1 style="color: #00ff88; margin-bottom: 1rem;">🎮 Encuesta Gamer</h1>
+                    <p>Completa esta encuesta y conoce tu perfil de jugador</p>
+                    
+                    <div class="survey-question">
+                        <label>🔹 Alias / Nickname:</label>
+                        <input type="text" id="surveyAlias" placeholder="Ej: ShadowKiller, ProPlayer, etc.">
+                    </div>
+
+                    <div class="survey-question">
+                        <label>🔹 ¿Qué tipo de jugador eres?</label>
+                        <select id="surveyType">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Competitivo">🏆 Competitivo - Solo importa ganar</option>
+                            <option value="Casual">🎮 Casual - Juego por diversión</option>
+                            <option value="Estratega">🧠 Estratega - Me gusta planificar</option>
+                            <option value="Social">💬 Social - Me gusta jugar con amigos</option>
+                            <option value="Tryhard">⚡ Tryhard - Entreno para mejorar</option>
+                        </select>
+                    </div>
+
+                    <div class="survey-question">
+                        <label>🔹 ¿Cuántas horas juegas a la semana?</label>
+                        <select id="surveyHours">
+                            <option value="">Selecciona una opción</option>
+                            <option value="Menos de 5">Menos de 5 horas</option>
+                            <option value="5 a 10">5 a 10 horas</option>
+                            <option value="10 a 20">10 a 20 horas</option>
+                            <option value="20 a 30">20 a 30 horas</option>
+                            <option value="Más de 30">Más de 30 horas</option>
+                        </select>
+                    </div>
+
+                    <div class="survey-question">
+                        <label>🔹 Tu género de juego favorito:</label>
+                        <select id="surveyGenre">
+                            <option value="">Selecciona una opción</option>
+                            <option value="FPS">🔫 FPS (Disparos)</option>
+                            <option value="MOBA">⚔️ MOBA (Estrategia)</option>
+                            <option value="Battle Royale">🪂 Battle Royale</option>
+                            <option value="RPG">🗡️ RPG (Rol)</option>
+                            <option value="Deportes">⚽ Deportes</option>
+                            <option value="Estrategia">🎯 Estrategia</option>
+                        </select>
+                    </div>
+
+                    <div class="survey-question">
+                        <label>🔹 ¿Participas en torneos o competitivo?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="tournament" value="Sí, regularmente"> Sí, regularmente</label>
+                            <label><input type="radio" name="tournament" value="A veces"> A veces</label>
+                            <label><input type="radio" name="tournament" value="No, solo casual"> No, solo casual</label>
+                            <label><input type="radio" name="tournament" value="Me gustaría empezar"> Me gustaría empezar</label>
+                        </div>
+                    </div>
+
+                    <div class="survey-question">
+                        <label>🔹 ¿Qué buscas en una comunidad gamer?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="community" value="Aprender y mejorar"> Aprender y mejorar</label>
+                            <label><input type="radio" name="community" value="Hacer amigos"> Hacer amigos</label>
+                            <label><input type="radio" name="community" value="Encontrar equipo"> Encontrar equipo</label>
+                            <label><input type="radio" name="community" value="Información del meta"> Información del meta</label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="submitSurvey()" style="width: 100%; margin-top: 1rem;">📊 Enviar Encuesta</button>
+                    
+                    <div id="surveyResult" style="margin-top: 1.5rem; padding: 1rem; background: #0a0a0a; border-radius: 5px; display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="logo" style="font-size: 1.2rem; margin-bottom: 0.5rem;">GAMERZONE_BETA</div>
+            <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <a onclick="navigateTo('home')" style="color:#666; cursor:pointer;">Inicio</a>
+                <a onclick="navigateTo('games')" style="color:#666; cursor:pointer;">Juegos</a>
+                <a onclick="navigateTo('community')" style="color:#666; cursor:pointer;">Comunidad</a>
+                <a onclick="navigateTo('ranking')" style="color:#666; cursor:pointer;">Ranking</a>
+                <a onclick="navigateTo('survey')" style="color:#666; cursor:pointer;">Encuesta</a>
+            </div>
+            <p style="color:#666; font-size: 0.8rem;">© 2026 GamerZone_Beta. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
