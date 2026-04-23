@@ -1,16 +1,16 @@
-// ============ DATOS CON IMÁGENES ============
+// ============ DATOS CON ENLACES ============
 let currentUser = null;
 
 const gamesData = [
-    { id: 1, name: "VALORANT", category: "FPS", rating: 4.8, rank: 1, emoji: "🔫", image: "r1.png" },
-    { id: 2, name: "League of Legends", category: "MOBA", rating: 4.7, rank: 2, emoji: "⚔️", image: "r2.png" },
-    { id: 3, name: "Counter-Strike 2", category: "FPS", rating: 4.6, rank: 3, emoji: "🎯", image: "r3.png" },
-    { id: 4, name: "Fortnite", category: "Battle Royale", rating: 4.5, rank: 4, emoji: "🪂", image: "r4.png" },
-    { id: 5, name: "Dota 2", category: "MOBA", rating: 4.4, rank: 5, emoji: "🧙", image: "r5.png" },
-    { id: 6, name: "Apex Legends", category: "Battle Royale", rating: 4.3, rank: 6, emoji: "🚀", image: "r6.png" },
-    { id: 7, name: "Call of Duty", category: "FPS", rating: 4.2, rank: 7, emoji: "💥", image: "r7.png" },
-    { id: 8, name: "Minecraft", category: "RPG", rating: 4.9, rank: 8, emoji: "⛏️", image: "r8.png" },
-    { id: 9, name: "Deemo", category: "Musical", rating: 5.0, rank: 9, emoji: "🎹", image: "r9.png" }
+    { id: 1, name: "VALORANT", category: "FPS", rating: 4.8, rank: 1, emoji: "🔫", page: "index_valorant.html" },
+    { id: 2, name: "League of Legends", category: "MOBA", rating: 4.7, rank: 2, emoji: "⚔️", page: "index_lol.html" },
+    { id: 3, name: "Counter-Strike 2", category: "FPS", rating: 4.6, rank: 3, emoji: "🎯", page: "index_counter.html" },
+    { id: 4, name: "Fortnite", category: "Battle Royale", rating: 4.5, rank: 4, emoji: "🪂", page: "fortnite.html" },
+    { id: 5, name: "Dota 2", category: "MOBA", rating: 4.4, rank: 5, emoji: "🧙", page: "index_dota.html" },
+    { id: 6, name: "Apex Legends", category: "Battle Royale", rating: 4.3, rank: 6, emoji: "🚀", page: "index_apex.html" },
+    { id: 7, name: "Call of Duty", category: "FPS", rating: 4.2, rank: 7, emoji: "💥", page: "index_call.html" },
+    { id: 8, name: "Minecraft", category: "RPG", rating: 4.9, rank: 8, emoji: "⛏️", page: "index_minecraft.html" },
+    { id: 9, name: "Deemo", category: "Musical", rating: 5.0, rank: 9, emoji: "🎹", page: "deemo.html" }
 ];
 
 let threads = [
@@ -34,6 +34,15 @@ function navigateTo(section) {
     if (section === 'ranking') updateRankingDisplay();
     if (section === 'community') renderForumView();
     window.scrollTo({ top: 0 });
+}
+
+// ============ FUNCIÓN PARA ABRIR JUEGO ============
+function openGame(page) {
+    if (page) {
+        window.location.href = page;
+    } else {
+        alert('🚧 Página en construcción. ¡Próximamente!');
+    }
 }
 
 // ============ AUTENTICACIÓN ============
@@ -162,14 +171,9 @@ function showProfile() {
 }
 
 // ============ RANKING ============
-let rankingData = [...gamesData];
-
 function updateRankingDisplay() {
-    rankingData = [...gamesData].sort((a, b) => b.rating - a.rating);
-    rankingData.forEach((g, i) => { 
-        g.currentRank = i + 1; 
-        g.variation = Math.floor(Math.random() * 5) - 2; 
-    });
+    const rankingData = [...gamesData].sort((a, b) => b.rating - a.rating);
+    rankingData.forEach((g, i) => { g.currentRank = i + 1; g.variation = Math.floor(Math.random() * 5) - 2; });
     
     let html = '<table class="ranking-table"><thead><tr><th>#</th><th>Juego</th><th>Categoría</th><th>Puntuación</th><th>Variación</th></tr></thead><tbody>';
     for (let g of rankingData) {
@@ -193,16 +197,18 @@ function updateRankingDisplay() {
     document.getElementById('rankingTable').innerHTML = html;
 }
 
-// ============ JUEGOS ============
+// ============ JUEGOS (con enlace clickeable) ============
 function renderGames(filter = 'Todos') {
     const filtered = filter === 'Todos' ? gamesData : gamesData.filter(g => g.category === filter);
+    
     document.getElementById('gamesGrid').innerHTML = filtered.map(g => `
-        <div class="card">
-            <img src="${g.image}" class="game-img" alt="${g.name}" onerror="this.onerror=null; this.src=''; this.classList.add('game-img-fallback'); this.innerText='${g.emoji}';">
-            <h3>${g.name}</h3>
-            <p>🎮 ${g.category}</p>
-            <p>⭐ ${g.rating} / 5</p>
-            <p>🏆 Ranking #${g.rank}</p>
+        <div class="card" onclick="openGame('${g.page}')" style="cursor: pointer;">
+            <div style="font-size: 4rem; text-align: center; margin: 0.5rem 0;">${g.emoji}</div>
+            <h3 style="text-align: center;">${g.name}</h3>
+            <p style="text-align: center;">🎮 ${g.category}</p>
+            <p style="text-align: center;">⭐ ${g.rating} / 5</p>
+            <p style="text-align: center;">🏆 Ranking #${g.rank}</p>
+            <div style="text-align: center; color: #00ff88; font-size: 0.8rem; margin-top: 0.5rem;">✨ Click para jugar</div>
         </div>
     `).join('');
 }
@@ -310,11 +316,11 @@ function submitSurvey() {
     if (!community) { alert('Selecciona qué buscas en una comunidad'); return; }
     
     let profileMessage = '';
-    if (type === 'Competitivo') profileMessage = '🏆 Eres un jugador COMPETITIVO. ¡Buscas la gloria y la victoria!';
-    else if (type === 'Casual') profileMessage = '🎮 Eres un jugador CASUAL. Juegas para divertirte y relajarte.';
-    else if (type === 'Estratega') profileMessage = '🧠 Eres un ESTRATEGA. Te gusta planificar cada movimiento.';
-    else if (type === 'Social') profileMessage = '💬 Eres un jugador SOCIAL. Disfrutas jugar en equipo y hacer amigos.';
-    else if (type === 'Tryhard') profileMessage = '⚡ Eres un TRYHARD. Entrenas constantemente para mejorar.';
+    if (type === 'Competitivo') profileMessage = '🏆 Eres un jugador COMPETITIVO';
+    else if (type === 'Casual') profileMessage = '🎮 Eres un jugador CASUAL';
+    else if (type === 'Estratega') profileMessage = '🧠 Eres un ESTRATEGA';
+    else if (type === 'Social') profileMessage = '💬 Eres un jugador SOCIAL';
+    else if (type === 'Tryhard') profileMessage = '⚡ Eres un TRYHARD';
     
     const resultDiv = document.getElementById('surveyResult');
     resultDiv.style.display = 'block';
@@ -347,11 +353,11 @@ function initHomeStats() {
     `;
     
     document.getElementById('featuredGames').innerHTML = gamesData.slice(0, 3).map(g => `
-        <div class="card">
-            <img src="${g.image}" class="game-img" alt="${g.name}" onerror="this.onerror=null; this.src=''; this.classList.add('game-img-fallback'); this.innerText='${g.emoji}';">
-            <h3>${g.name}</h3>
-            <p>${g.category}</p>
-            <p>⭐ ${g.rating}</p>
+        <div class="card" onclick="openGame('${g.page}')" style="cursor: pointer;">
+            <div style="font-size: 3rem; text-align: center;">${g.emoji}</div>
+            <h3 style="text-align: center;">${g.name}</h3>
+            <p style="text-align: center;">${g.category}</p>
+            <p style="text-align: center;">⭐ ${g.rating}</p>
         </div>
     `).join('');
     
@@ -373,7 +379,9 @@ document.getElementById('modal').addEventListener('click', (e) => {
     if (e.target.id === 'modal') closeModal();
 });
 
+// Exponer funciones globalmente
 window.navigateTo = navigateTo;
+window.openGame = openGame;
 window.showModal = showModal;
 window.login = login;
 window.register = register;
