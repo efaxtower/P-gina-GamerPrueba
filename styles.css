@@ -718,3 +718,95 @@ body {
     }
 }
 
+/* ============ RESPONSIVE PARA MÓVIL ============ */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+    
+    .nav-links {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;
+    }
+    
+    .auth-buttons {
+        gap: 0.5rem;
+    }
+    
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+    
+    .main-content {
+        margin-top: 140px;
+        padding: 1rem;
+    }
+    
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.8rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .games-grid, .stats-grid, .posts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .forum-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .ranking-table th, .ranking-table td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .survey-section {
+        padding: 1rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranking-table {
+        font-size: 0.7rem;
+    }
+    
+    .ranking-table th, .ranking-table td {
+        padding: 0.3rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+    }
+}
+
+
