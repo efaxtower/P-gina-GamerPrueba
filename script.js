@@ -2,17 +2,6 @@
 let currentUser = null;
 
 const gamesData = [
-<<<<<<< HEAD
-    { id: 1, name: "VALORANT", category: "FPS", rating: 4.8, rank: 1, emoji: "🔫", image: "r1.png", link: "index_valorant.html" },
-    { id: 2, name: "League of Legends", category: "MOBA", rating: 4.7, rank: 2, emoji: "⚔️", image: "r2.png", link: "index_lol.html" },
-    { id: 3, name: "Counter-Strike 2", category: "FPS", rating: 4.6, rank: 3, emoji: "🎯", image: "r3.png", link: "index_counter.html" },
-    { id: 4, name: "Fortnite", category: "Battle Royale", rating: 4.5, rank: 4, emoji: "🪂", image: "r4.png", link: "index_fornite.html" },
-    { id: 5, name: "Dota 2", category: "MOBA", rating: 4.4, rank: 5, emoji: "🧙", image: "r5.png", link: "index_dota.html" },
-    { id: 6, name: "Apex Legends", category: "Battle Royale", rating: 4.3, rank: 6, emoji: "🚀", image: "r6.png", link: "index_apex.html" },
-    { id: 7, name: "Call of Duty", category: "FPS", rating: 4.2, rank: 7, emoji: "💥", image: "r7.png", link: "index_call.html" },
-    { id: 8, name: "Minecraft", category: "RPG", rating: 4.9, rank: 8, emoji: "⛏️", image: "r8.png", link: "index_minecraft.html" },
-    { id: 9, name: "Deemo", category: "Musical", rating: 5.0, rank: 9, emoji: "🎹", image: "r9.png", link: "deemo.html" }
-=======
     { id: 1, name: "VALORANT", category: "FPS", rating: 4.8, rank: 1, emoji: "🔫", image: "r1.png" },
     { id: 2, name: "League of Legends", category: "MOBA", rating: 4.7, rank: 2, emoji: "⚔️", image: "r2.png" },
     { id: 3, name: "Counter-Strike 2", category: "FPS", rating: 4.6, rank: 3, emoji: "🎯", image: "r3.png" },
@@ -22,7 +11,6 @@ const gamesData = [
     { id: 7, name: "Call of Duty", category: "FPS", rating: 4.2, rank: 7, emoji: "💥", image: "r7.png" },
     { id: 8, name: "Minecraft", category: "RPG", rating: 4.9, rank: 8, emoji: "⛏️", image: "r8.png" },
     { id: 9, name: "Deemo", category: "Musical", rating: 5.0, rank: 9, emoji: "🎹", image: "r9.png" }
->>>>>>> ab8f48ee7e37c1df7f0fc1a3f44b667d287d11a5
 ];
 
 let threads = [
@@ -36,16 +24,9 @@ let posts = [
     { id: 2, threadId: 1, author: "GamerX", date: "2026-03-22", content: "Yo recomendaría también a Sage." }
 ];
 
-<<<<<<< HEAD
-// Categorías para filtros
 const categories = ["Todos", "FPS", "Battle Royale", "MOBA", "RPG", "Musical"];
 const forumCategories = ["General", "Meta", "Hardware", "Estrategias", "Noticias"];
 
-=======
-// Añadí "Musical" aquí para que el filtro funcione
-const categories = ["Todos", "FPS", "Battle Royale", "MOBA", "RPG", "Musical"];
-const forumCategories = ["General", "Meta", "Hardware", "Estrategias", "Noticias"];
->>>>>>> ab8f48ee7e37c1df7f0fc1a3f44b667d287d11a5
 // ============ NAVEGACIÓN ============
 function navigateTo(section) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -181,10 +162,6 @@ function showProfile() {
 }
 
 // ============ RANKING ============
-<<<<<<< HEAD
-=======
-// ============ RANKING (SIN IMÁGENES, SOLO TEXTO) ============
->>>>>>> ab8f48ee7e37c1df7f0fc1a3f44b667d287d11a5
 let rankingData = [...gamesData];
 
 function updateRankingDisplay() {
@@ -214,40 +191,6 @@ function updateRankingDisplay() {
     }
     html += '</tbody></table>';
     document.getElementById('rankingTable').innerHTML = html;
-<<<<<<< HEAD
-}
-
-// ============ JUEGOS (con enlace para Deemo) ============
-function renderGames(filter = 'Todos') {
-    const filtered = filter === 'Todos' ? gamesData : gamesData.filter(g => g.category === filter);
-    
-    document.getElementById('gamesGrid').innerHTML = filtered.map(g => {
-        // Si el juego tiene link, la tarjeta será clickeable
-        if (g.link) {
-            return `
-                <div class="card clickable-card" onclick="window.location.href='${g.link}'" style="cursor: pointer;">
-                    <img src="${g.image}" class="game-img" alt="${g.name}" onerror="this.onerror=null; this.src=''; this.classList.add('game-img-fallback'); this.innerText='${g.emoji}';">
-                    <h3>${g.name} 🔗</h3>
-                    <p>🎮 ${g.category}</p>
-                    <p>⭐ ${g.rating} / 5</p>
-                    <p>🏆 Ranking #${g.rank}</p>
-                    <div style="margin-top: 10px; color: #00ff88; font-size: 0.8rem;">✨ Click para ver</div>
-                </div>
-            `;
-        } else {
-            return `
-                <div class="card">
-                    <img src="${g.image}" class="game-img" alt="${g.name}" onerror="this.onerror=null; this.src=''; this.classList.add('game-img-fallback'); this.innerText='${g.emoji}';">
-                    <h3>${g.name}</h3>
-                    <p>🎮 ${g.category}</p>
-                    <p>⭐ ${g.rating} / 5</p>
-                    <p>🏆 Ranking #${g.rank}</p>
-                </div>
-            `;
-        }
-    }).join('');
-=======
-
 }
 
 // ============ JUEGOS ============
@@ -262,7 +205,6 @@ function renderGames(filter = 'Todos') {
             <p>🏆 Ranking #${g.rank}</p>
         </div>
     `).join('');
->>>>>>> ab8f48ee7e37c1df7f0fc1a3f44b667d287d11a5
 }
 
 function initGameFilters() {
@@ -416,14 +358,6 @@ function initHomeStats() {
     document.getElementById('latestPosts').innerHTML = threads.slice(0, 3).map(t => `
         <div class="card"><h3>${t.title}</h3><p>👤 ${t.author} | 💬 ${t.replies}</p><small>📅 ${t.date}</small></div>
     `).join('');
-<<<<<<< HEAD
-=======
-
-    
-    document.getElementById('latestPosts').innerHTML = threads.slice(0, 3).map(t => `
-        <div class="card"><h3>${t.title}</h3><p>👤 ${t.author} | 💬 ${t.replies}</p><small>📅 ${t.date}</small></div>
-    `).join('');
->>>>>>> ab8f48ee7e37c1df7f0fc1a3f44b667d287d11a5
 }
 
 // ============ INICIALIZACIÓN ============
